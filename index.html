@@ -2520,6 +2520,10 @@ L3.compose = function (sp) {
   const c0 = st.comp;
   if (c0 && c0.ppd === lv.ppd && need.lat0 >= c0.lat0 && need.lat1 <= c0.lat1 && need.lon0 >= c0.lon0 && need.lon1 <= c0.lon1) return c0;
   const T = g.THREE, cw = Math.ceil((want.lon1 - want.lon0) * lv.ppd), ch = Math.ceil((want.lat1 - want.lat0) * lv.ppd);
+  // WebGL 2 fixes a texture's size at its first upload (texStorage2D): a canvas of another size needs a new texture, or the
+  // upload fails and the old surface stays on the GPU under the new coordinates
+  const same = c0 && c0.cv.width === cw && c0.cv.height === ch;
+  if (c0 && c0.tex && !same) { c0.tex.dispose(); c0.tex = null; }
   const cv = (c0 && c0.cv) || document.createElement('canvas'); cv.width = cw; cv.height = ch;
   const ctx = cv.getContext('2d'), comp = { cv, ctx, ppd: lv.ppd, lat0: want.lat0, lat1: want.lat0 + ch / lv.ppd, lon0: want.lon0, lon1: want.lon0 + cw / lv.ppd };
   // the 4k colour image underneath (in up to three pieces across ±180°)

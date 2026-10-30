@@ -2930,7 +2930,7 @@ L3.bindPointer = function (box) {
     L3.kick();
   };
   L3.keyMove = keyMove;
-  // the keys work whenever the view is on screen (2026-10-31; before, only with the focus on it), except while the focus is in
+  // the keys work whenever the view is on screen (2026-10-30; before, only with the focus on it), except while the focus is in
   // a field, a menu or another slider, which keep their own arrow keys; on the throttle slider they move the observer instead
   const KEYS = ['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'];
   const ours = el => {
@@ -5266,7 +5266,7 @@ UI.night.renderLocalInfo = function (pt, sky) {
 };
 /* First-person view (three.js, loaded with the 3D stream view's loader); the all-sky chart stays underneath as the fallback. */
 const L3 = g.LUNAR3D;
-/* Full screen for the first-person view (2026-10-31): the view itself goes full screen and the controls row moves into it as a
+/* Full screen for the first-person view (2026-10-30): the view itself goes full screen and the controls row moves into it as a
    bar along the bottom (the minimap and the explanation button move up to clear it). Where the browser has no element full
    screen (iPhone), the view fills the window instead. Esc, the button or leaving the view ends it. */
 UI.night.full = { on: false, fake: false, home: null };
